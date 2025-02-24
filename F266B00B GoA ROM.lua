@@ -54,6 +54,7 @@ if (GAME_ID == 0xF266B00B or GAME_ID == 0xFAF99301) and ENGINE_TYPE == "ENGINE" 
 	Sys3 = ReadInt(Sys3Pointer)
 	Btl0 = ReadInt(Btl0Pointer)
 	MSN = 0x04FA440
+	hasDied = false
 elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 	OnPC = true
 	if ReadString(0x9A9330,4) == 'KH2J' then --EGS
@@ -96,6 +97,7 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		Sys3 = ReadLong(Sys3Pointer)
 		Btl0 = ReadLong(Btl0Pointer)
 		MSN = 0x0BF2C80
+		IsDead = 0x0BEEF28 
 	elseif ReadString(0x9A98B0,4) == 'KH2J' then --Steam Global
 		GameVersion = 3
 		print('GoA Steam Global Version')
@@ -136,6 +138,7 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		Sys3 = ReadLong(Sys3Pointer)
 		Btl0 = ReadLong(Btl0Pointer)
 		MSN = 0x0BF33C0
+		IsDead = 0x0BEF4A8 
 	elseif ReadString(0x9A98B0,4) == 'KH2J' then --Steam JP (same as Global for now)
 		GameVersion = 4
 		print('GoA Steam JP Version')
@@ -176,6 +179,7 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		Sys3 = ReadLong(Sys3Pointer)
 		Btl0 = ReadLong(Btl0Pointer)
 		MSN = 0x0BF33C0
+		IsDead = 0x0BEF4A8 
 	elseif ReadString(0x9A7070,4) == "KH2J" or ReadString(0x9A70B0,4) == "KH2J" or ReadString(0x9A92F0,4) == "KH2J" then
 		GameVersion = -1
 		print("Epic Version is outdated. Please update the game.")
@@ -324,6 +328,33 @@ STT()
 AW()
 At()
 Data()
+
+-- 0x0BEF4A8 steam
+-- 0x0BEEF28 epic
+-- deathlink
+killSora = false
+isDeathLink = ReadLong(IsDead)
+
+-- kills sora if deathlink is active
+if(ReadByte(0x810000)==1)then
+	-- if drive gauge> 5 and world is not atlantica
+	if(Slot1+0x1B2>=5 and World ~= 11) then
+		killSora = true
+	end
+end
+if(isDeathLink~=0) then
+	hasDied = true
+	--print(hasDied)
+end
+if(killSora and ((World~=6 or Room~=0)))then
+	WriteByte(Slot1,0)
+end
+if(hasDied and isDeathLink==0)then
+	--print("sora has come back")
+	hasDied = false
+	WriteByte(0x810000,0)
+end
+
 end
 
 function NewGame()
