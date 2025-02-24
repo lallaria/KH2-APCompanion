@@ -7,7 +7,7 @@ LUAGUI_DESC = 'A GoA build for use with the Randomizer. Requires ROM patching.'
 
 function _OnInit()
 GameVersion = 0
-print('GoA v1.54.3 - Archipelago')
+print('GoA v1.54.3.1 - Archipelago')
 GoAOffset = 0x7C
 SeedCleared = false
 end
