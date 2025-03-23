@@ -353,8 +353,11 @@ if(hasDied and isDeathLink==0)then
 	--print("sora has come back")
 	hasDied = false
 	WriteByte(0x810000,0)
+	WriteByte(0x810001,0)
 end
-
+if(isDeathLink~=0 and hasDied==true)then
+	WriteByte(0x810001,1)
+end
 end
 
 function NewGame()
