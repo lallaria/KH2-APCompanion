@@ -97,7 +97,7 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		Sys3 = ReadLong(Sys3Pointer)
 		Btl0 = ReadLong(Btl0Pointer)
 		MSN = 0x0BF2C80
-		IsDead = 0x0BEEF28 
+		IsDeadAddress = 0x0BEEF28 
 	elseif ReadString(0x9A98B0,4) == 'KH2J' then --Steam Global
 		GameVersion = 3
 		print('GoA Steam Global Version')
@@ -138,7 +138,7 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		Sys3 = ReadLong(Sys3Pointer)
 		Btl0 = ReadLong(Btl0Pointer)
 		MSN = 0x0BF33C0
-		IsDead = 0x0BEF4A8 
+		IsDeadAddress = 0x0BEF4A8 
 	elseif ReadString(0x9A98B0,4) == 'KH2J' then --Steam JP (same as Global for now)
 		GameVersion = 4
 		print('GoA Steam JP Version')
@@ -179,7 +179,7 @@ elseif GAME_ID == 0x431219CC and ENGINE_TYPE == 'BACKEND' then --PC
 		Sys3 = ReadLong(Sys3Pointer)
 		Btl0 = ReadLong(Btl0Pointer)
 		MSN = 0x0BF33C0
-		IsDead = 0x0BEF4A8 
+		IsDeadAddress = 0x0BEF4A8 
 	elseif ReadString(0x9A7070,4) == "KH2J" or ReadString(0x9A70B0,4) == "KH2J" or ReadString(0x9A92F0,4) == "KH2J" then
 		GameVersion = -1
 		print("Epic Version is outdated. Please update the game.")
@@ -333,30 +333,33 @@ Data()
 -- 0x0BEEF28 epic
 -- deathlink
 killSora = false
-isDeathLink = ReadLong(IsDead)
-
+isDead = ReadLong(IsDeadAddress)
 -- kills sora if deathlink is active
+-- if death is sent by server 810000 == 1
 if(ReadByte(0x810000)==1)then
 	-- if drive gauge> 5 and world is not atlantica
-	if(Slot1+0x1B2>=5 and World ~= 11) then
-		killSora = true
+	if(ReadByte(Slot1+0x1B2)>=5 and World ~= 11) then
+		killSora = true -- set the script to kill sora
 	end
 end
-if(isDeathLink~=0) then
+-- if sora is dead then put hasDied as true
+if(isDead~=0) then
 	hasDied = true
 	--print(hasDied)
 end
-if(killSora and ((World~=6 or Room~=0)))then
+-- if the script says kill sora and we are safe to do so kill him
+if(killSora == true and ((World~=6 or Room~=0)))then
 	WriteByte(Slot1,0)
 end
-if(hasDied and isDeathLink==0)then
+-- if he has died and He is currently Not dead
+if(hasDied and isDead==0)then
 	--print("sora has come back")
-	hasDied = false
-	WriteByte(0x810000,0)
-	WriteByte(0x810001,0)
-end
-if(isDeathLink~=0 and hasDied==true)then
-	WriteByte(0x810001,1)
+	hasDied = false -- he hasnt died since he is alive
+	if(ReadByte(0x810000)==0) then 
+		WriteByte(0x810001,1) -- tell client that sora has come back from death and to send deathlink
+	end
+	WriteByte(0x810000,0) -- server has killed sora thus seting it to 0
+	
 end
 end
 
