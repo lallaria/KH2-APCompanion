@@ -13,6 +13,7 @@ SeedCleared = false
 end
 
 function GetVersion() --Define anchor addresses
+	
 if (GAME_ID == 0xF266B00B or GAME_ID == 0xFAF99301) and ENGINE_TYPE == "ENGINE" then --PCSX2
 	OnPC = false
 	GameVersion = 1
@@ -334,6 +335,8 @@ Data()
 -- deathlink
 killSora = false
 isDead = ReadLong(IsDeadAddress)
+--print(isDeathLink)
+--print(ReadByte(Slot1+0x1B2))
 -- kills sora if deathlink is active
 -- if death is sent by server 810000 == 1
 if(ReadByte(0x810000)==1)then
@@ -357,10 +360,18 @@ if(hasDied and isDead==0)then
 	hasDied = false -- he hasnt died since he is alive
 	if(ReadByte(0x810000)==0) then 
 		WriteByte(0x810001,1) -- tell client that sora has come back from death and to send deathlink
+		WriteByte(0x810002,Room)
+		WriteByte(0x810003,Evt)
+		WriteByte(0x810004,World)
 	end
 	WriteByte(0x810000,0) -- server has killed sora thus seting it to 0
 	
 end
+
+--if(isDead~=0 and hasDied==true)then
+--	print("told clieent that you died")
+--	WriteByte(0x810001,1) -- tell client that sora died
+--end
 end
 
 function NewGame()
