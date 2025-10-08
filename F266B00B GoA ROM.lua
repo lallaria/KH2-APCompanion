@@ -1,5 +1,5 @@
 --ROM Version
---Last Update: v1.0.0.9 Epic & Steam addresses
+--Last Update: v1.0.0.10 Epic & Steam addresses
 
 LUAGUI_NAME = 'GoA ROM Randomizer Build'
 LUAGUI_AUTH = 'SonicShadowSilver2 (Ported by Num)'
@@ -756,6 +756,11 @@ while ReadByte(Save+0x3695) > ReadByte(Save+0x35C5) do
 	WriteInt(Save+0x2440,ReadInt(Save+0x2440)+5000)
 	WriteByte(Save+0x35C5,ReadByte(Save+0x35C5)+1)
 end
+-- Bounty Money 
+while ReadByte(Save+0x36C2)&0x20 > ReadByte(Save+0x3D18) do
+	WriteInt(Save+0x2440,ReadInt(Save+0x2440)+1000)
+	WriteByte(Save+0x3D18,ReadByte(Save+0x3D18)+1)
+end
 --DUMMY 23 = Maximum HP Increased!
 while ReadByte(Save+0x3671) > ReadByte(Save+0x35CC) and ReadInt(Slot1+0x000) > 1 do
 	local Bonus
@@ -1067,21 +1072,6 @@ end
 if ReadShort(Save+0x1B7C) == 0x04 and SeedCleared then
 	WriteShort(Save+0x1B7C, 0x0D) --The Altar of Naught MAP (Door RC Available)
 end
--- Engine Core Wrong Warp
-if Place==6930 then
-	--Warp into the appropriate World, Room, Door, Map, Btl, Evt
-	Warp(18,25,0,70,70,70)
-end
-
-if World==18 and Room==27 and Place==6930 then
-	if ReadByte(Save+0x36B2) > 0 and ReadByte(Save+0x36B3) > 0 and ReadByte(Save+0x36B4) > 0 then
-	--Warp into the appropriate World, Room, Door, Map, Btl, Evt
-		Warp(18,25,0,70,70,70)
-	else
-		Warp(2,33)
-	end
-end
-
 end
 
 function LoD()

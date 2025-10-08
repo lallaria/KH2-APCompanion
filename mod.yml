@@ -1,5 +1,5 @@
 title: Archipelago Companion
-originalAuthor: JaredWeakStrike and Shananas
+originalAuthor: JaredWeakStrike and Shananas (Delilah edits)
 description: Necessary files for the KH2 Archipelago. Thanks to num for assistance with GoA edits. Thanks to the KH2 Rando Devs for the Quality of life features.
 assets:
 #Lua Script
@@ -94,16 +94,7 @@ assets:
   platform: pc
   method: copy
   source:
-  - name: remastered/itempic/AP.dds
-- name: itempic/item-031.imd #DC Key (Dummy 13)
-  method: copy
-  source:
-  - name: itempic/item-031.imd
-- name: remastered/itempic/item-031.imd/-0.dds #DC Key (Dummy 13)
-  platform: pc
-  method: copy
-  source:
-  - name: remastered/itempic/DC.dds
+  - name: remastered/itempic/KeyholeItem.png
 - name: itempic/item-032.imd #Bounty (Dummy 14)
   method: copy
   source:
@@ -112,7 +103,7 @@ assets:
   platform: pc
   method: copy
   source:
-  - name: remastered/itempic/Bounty.dds
+  - name: remastered/itempic/Bounty.png
 - name: itempic/item-230.imd #Lucky Emblem (Letter)
   method: copy
   source:
@@ -128,11 +119,11 @@ assets:
   source:
   - name: remastered/itempic/insertlogic.dds
 #puzzlepieces
-#- name: remastered/obj/F_EX260.a.us/-0.dds #Puzzle Pieces
-#  platform: pc
-#  method: copy
-#  source:
-#  - name: remastered/itempic/pp.dds
+- name: remastered/obj/F_EX260.a.us/-0.dds #Puzzle Pieces
+  platform: pc
+  method: copy
+  source:
+  - name: remastered/itempic/DaysPuzzle.png
 #Text
 - name: msg/us/sys.bar
   multi:
