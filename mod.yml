@@ -86,33 +86,21 @@ assets:
   source:
   - name: 03system.bin/better_stt/W_EX010_RX.mset
 #item images
-- name: itempic/item-030.imd #AP Item (Castle Map)
-  method: copy
-  source:
-  - name: itempic/item-030.imd
 - name: remastered/itempic/item-030.imd/-0.dds #AP Item (Castle Map)
   platform: pc
   method: copy
   source:
-  - name: remastered/itempic/KeyholeItem.png
-- name: itempic/item-032.imd #Bounty (Dummy 14)
-  method: copy
-  source:
-  - name: itempic/item-032.imd
+  - name: remastered/itempic/KeyholeItem.dds
 - name: remastered/itempic/item-032.imd/-0.dds #Bounty (Dummy 14)
   platform: pc
   method: copy
   source:
-  - name: remastered/itempic/Bounty.png
-- name: itempic/item-230.imd #Lucky Emblem (Letter)
-  method: copy
-  source:
-  - name: itempic/item-230.imd
+  - name: remastered/itempic/Bounty.dds
 - name: remastered/itempic/item-230.imd/-0.dds #Lucky Emblem (Letter)
   platform: pc
   method: copy
   source:
-  - name: remastered/itempic/LE.dds
+  - name: remastered/itempic/LuckyEmblem.dds
 - name: remastered/itempic/item-229.imd/-0.dds #Game Options (Poster)
   platform: pc
   method: copy
@@ -123,7 +111,7 @@ assets:
   platform: pc
   method: copy
   source:
-  - name: remastered/itempic/DaysPuzzle.png
+  - name: remastered/itempic/DaysPuzzle.dds
 #Text
 - name: msg/us/sys.bar
   multi:
