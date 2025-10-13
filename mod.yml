@@ -94,7 +94,16 @@ assets:
   platform: pc
   method: copy
   source:
-  - name: remastered/itempic/KeyholeItem.png
+  - name: remastered/itempic/KeyholeItem.dds
+- name: itempic/item-031.imd #DC Key (Dummy 13)
+  method: copy
+  source:
+  - name: itempic/item-031.imd
+- name: remastered/itempic/item-031.imd/-0.dds #DC Key (Dummy 13)
+  platform: pc
+  method: copy
+  source:
+  - name: remastered/itempic/DC.dds
 - name: itempic/item-032.imd #Bounty (Dummy 14)
   method: copy
   source:
@@ -103,7 +112,7 @@ assets:
   platform: pc
   method: copy
   source:
-  - name: remastered/itempic/Bounty.png
+  - name: remastered/itempic/Bounty.dds
 - name: itempic/item-230.imd #Lucky Emblem (Letter)
   method: copy
   source:
@@ -123,7 +132,7 @@ assets:
   platform: pc
   method: copy
   source:
-  - name: remastered/itempic/DaysPuzzle.png
+  - name: remastered/itempic/DaysPuzzle.dds
 #Text
 - name: msg/us/sys.bar
   multi:

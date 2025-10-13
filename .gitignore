@@ -1,7 +1,3 @@
 
 *.vsidx
-.vs/AP_QoL_Stuff/FileContentIndex/read.lock
-.vs/slnx.sqlite
-.vs/ProjectSettings.json
-.vs/VSWorkspaceState.json
-.vs/AP_QoL_Stuff/v17/.wsuo
+.vs/*
