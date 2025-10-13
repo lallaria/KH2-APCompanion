@@ -121,7 +121,7 @@ assets:
   platform: pc
   method: copy
   source:
-  - name: remastered/itempic/LE.dds
+  - name: remastered/itempic/LuckyEmblem.dds
 - name: remastered/itempic/item-229.imd/-0.dds #Game Options (Poster)
   platform: pc
   method: copy
