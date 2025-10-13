@@ -256,3 +256,12 @@ assets:
     method: spawnpoint
     source:
     - name: m_20.yml
+#YOU NEED 2 WAY TO THE DAWNS TO PROCEED
+- name: remastered/map/eh13.map/-40.dds
+  method: copy
+  source:
+  - name: remastered/eh13.map/-40.dds
+- name: remastered/map/eh13.map/-25.dds
+  method: copy
+  source:
+  - name: remastered/eh13.map/-25.dds
